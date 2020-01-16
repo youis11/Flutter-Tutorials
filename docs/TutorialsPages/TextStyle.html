@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Flutter tutorials</title>
+        <link rel="stylesheet" href="../styles.css">
+        <link rel="stylesheet" href="../prettify.css" />
+        <link rel="stylesheet" href="../sunburst.css" />
+
+
+    </head>
+
+    <header>
+        <div class="header">
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home Page</a></li>
+                <li><a href="../about.html">About</a></li>
+            </ul>
+        </nav>
+        </div>
+    </header>
+
+    <body>
+        <h1>TextStyle</h1>
+        <h3>Text with some TextStyle and a number to string</h3>
+            <pre class="prettyprint lang-dart">
+                child: Text(
+                    '${this.num}',
+                    style: TextStyle(
+                        fontSize: 28,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                    ),
+                ),
+            </pre>
+
+        <!-- ONLOAD PRETTIFY -->
+        <script src="../prettify.js"></script>
+        <script>
+            window.onload = (function(){ prettyPrint(); });
+        </script>
+
+    </body>
+
+     <footer>
+        <h1>&copy;Lluís Moreu Farran 2020</h1>
+    </footer>
+
+</html>

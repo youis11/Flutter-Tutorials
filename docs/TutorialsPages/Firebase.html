@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Flutter tutorials</title>
+        <link rel="stylesheet" href="../styles.css">
+        <link rel="stylesheet" href="../prettify.css" />
+        <link rel="stylesheet" href="../sunburst.css" />
+
+
+    </head>
+
+    <header>
+        <div class="header">
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home Page</a></li>
+                <li><a href="../about.html">About</a></li>
+            </ul>
+        </nav>
+        </div>
+    </header>
+
+    <body>
+        <h1>Firebase</h1>
+        <h3>Cloud</h3>
+            <pre class="prettyprint lang-dart">
+                //INSTANCE
+                final db = Firestore.instance;
+
+                //READ
+                body: StreamBuilder<QuerySnapshot>(
+                    stream: db.collection('groups').orderBy('name').snapshots(),
+                    builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                        if (!snapshot.hasData) {
+                            return Center(child: CircularProgressIndicator());
+                        }
+                        List<DocumentSnapshot> groups = snapshot.data.documents;
+                        return ListView.builder(
+                            itemCount: groups.length,
+                            itemBuilder: (context, index) {
+                                return ListTile(
+                                    title: Text(
+                                        groups[index].data['name'],
+                                        style: TextStyle(fontWeight: FontWeight.bold),
+                                    ),
+                                    subtitle: Text(groups[index].documentID),
+                                );
+                            },
+                        );
+                    },
+                ),   
+
+                //NEW DOC
+                onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (_) => NewGroupPage(),
+                    )).then((groupName) {
+                        db.collection('groups').document().setData({
+                            'name': groupName,
+                        });
+                    });
+                },
+
+                //SEND MSG
+                  _sendMessage() {
+                    final db = Firestore.instance;
+                    if (_controller.text.isNotEmpty) {
+                        db.collection('groups/${widget.id}/messages').add({
+                            'text': _controller.text,
+                            'time': Timestamp.fromDate(DateTime.now()),
+                            'user': 'inventado',
+                        });
+                        _controller.clear();
+                    }
+                }
+            </pre>
+
+        <!-- ONLOAD PRETTIFY -->
+        <script src="../prettify.js"></script>
+        <script>
+            window.onload = (function(){ prettyPrint(); });
+        </script>
+
+    </body>
+
+     <footer>
+        <h1>&copy;Lluís Moreu Farran 2020</h1>
+    </footer>
+
+</html>

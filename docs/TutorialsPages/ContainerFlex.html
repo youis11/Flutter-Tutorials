@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Flutter tutorials</title>
+        <link rel="stylesheet" href="../styles.css">
+        <link rel="stylesheet" href="../prettify.css" />
+        <link rel="stylesheet" href="../sunburst.css" />
+
+
+    </head>
+
+    <header>
+        <div class="header">
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home Page</a></li>
+                <li><a href="../about.html">About</a></li>
+            </ul>
+        </nav>
+        </div>
+    </header>
+
+    <body>
+        <h1>Container Flex</h1>
+        <h3>Containers that have different flex values</h3>
+            <pre class="prettyprint lang-dart">
+                class Banda extends StatelessWidget {
+                    final int flex;
+                    final String text;
+                    final Color color;
+                    Banda(this.flex, this.text, this.color);
+
+                    @override
+                    Widget build(BuildContext context) {
+                        return Expanded(
+                        flex: this.flex,
+                            child: Container(
+                                color: this.color,
+                                child: Center(
+                                    child: Text(
+                                        this.text,
+                                        style: TextStyle(
+                                        fontSize: 24,
+                                        color: Color.fromARGB(129, 255, 255, 255),
+                                        ),
+                                    ),
+                                ),
+                            ),
+                        );
+                    }
+                }
+            </pre>
+
+        <!-- ONLOAD PRETTIFY -->
+        <script src="../prettify.js"></script>
+        <script>
+            window.onload = (function(){ prettyPrint(); });
+        </script>
+
+    </body>
+
+     <footer>
+        <h1>&copy;Lluís Moreu Farran 2020</h1>
+    </footer>
+
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Flutter tutorials</title>
+        <link rel="stylesheet" href="../styles.css">
+        <link rel="stylesheet" href="../prettify.css" />
+        <link rel="stylesheet" href="../sunburst.css" />
+
+
+    </head>
+
+    <header>
+        <div class="header">
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home Page</a></li>
+                <li><a href="../about.html">About</a></li>
+            </ul>
+        </nav>
+        </div>
+    </header>
+
+    <body>
+        <h1>Container Flex</h1>
+        <h3>Containers that have different flex values</h3>
+            <pre class="prettyprint lang-dart">
+                //BODY------------------------------------------
+                body: (_counters.isEmpty ? _buildEmpty() : _buildCounterGrid()),
+
+                //SIMPLE----------------------------------------
+
+                body: ListView(
+                    children: <Widget>[
+                        for (int i = 0; i < 25; i++)
+                        ListTile(
+                            title: Text('El numero $i'),
+                            subtitle: Text('Un peazo número'),
+                            trailing: Icon(Icons.delete),
+                        ),
+                    ],
+                ),
+
+                //BUILDER----------------------------------------
+
+                body: ListView.builder(
+                    itemCount: numeros.length,
+                    itemBuilder: (context, index) {
+                        return ListTile(
+                            title: Text('Item ${numeros[index]}'),
+                        );
+                    },
+                )
+            </pre>
+
+        <!-- ONLOAD PRETTIFY -->
+        <script src="../prettify.js"></script>
+        <script>
+            window.onload = (function(){ prettyPrint(); });
+        </script>
+
+    </body>
+
+     <footer>
+        <h1>&copy;Lluís Moreu Farran 2020</h1>
+    </footer>
+
+</html>

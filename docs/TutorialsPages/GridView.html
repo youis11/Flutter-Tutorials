@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Flutter tutorials</title>
+        <link rel="stylesheet" href="../styles.css">
+        <link rel="stylesheet" href="../prettify.css" />
+        <link rel="stylesheet" href="../sunburst.css" />
+
+
+    </head>
+
+    <header>
+        <div class="header">
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home Page</a></li>
+                <li><a href="../about.html">About</a></li>
+            </ul>
+        </nav>
+        </div>
+    </header>
+
+    <body>
+        <h1>Grid View Card</h1>
+        <h3>Grid View with a Card</h3>
+            <pre class="prettyprint lang-dart">
+                //BODY--------------------------------------------
+                body: (_counters.isEmpty ? _buildEmpty() : _buildCounterGrid()),
+
+                //GRID VIEW COUNT----------------------------------
+
+                child: GridView.count(
+                    // scrollDirection: Axis.horizontal,
+                    crossAxisCount: 4,
+                    crossAxisSpacing: 10,
+                    mainAxisSpacing: 10,
+                    padding: EdgeInsets.all(20),
+                    childAspectRatio: 2 / 3,
+                    children: <Widget>[
+                        for (int i = 0; i < 50; i++)
+                        Card(
+                            child: Center(
+                                child: Text('$i'),
+                            ),
+                        )
+                    ],
+                ),
+
+                //GRID VIEW BUILDER---------------------------------------
+                
+                child: GridView.builder(
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 5,
+                    ),
+                    itemCount: 1000,
+                    itemBuilder: (context, index) {
+                        print(index);
+                        return Card(
+                            child: Center(
+                                child: Text(
+                                    '${index + 1}',
+                                ),
+                            ),
+                        );
+                    },
+                ),
+            </pre>
+
+        <!-- ONLOAD PRETTIFY -->
+        <script src="../prettify.js"></script>
+        <script>
+            window.onload = (function(){ prettyPrint(); });
+        </script>
+
+    </body>
+
+     <footer>
+        <h1>&copy;Lluís Moreu Farran 2020</h1>
+    </footer>
+
+</html>

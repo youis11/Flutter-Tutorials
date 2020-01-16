@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Flutter tutorials</title>
+        <link rel="stylesheet" href="../styles.css">
+        <link rel="stylesheet" href="../prettify.css" />
+        <link rel="stylesheet" href="../sunburst.css" />
+
+
+    </head>
+
+    <header>
+        <div class="header">
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home Page</a></li>
+                <li><a href="../about.html">About</a></li>
+            </ul>
+        </nav>
+        </div>
+    </header>
+
+    <body>
+        <h1>Raised Button Navigator</h1>
+        <h3>Raised Button that calls Navigator to change a number</h3>
+            <pre class="prettyprint lang-dart">
+                class _CollapsibleTextState extends State<CollapsibleText> {
+                    bool _expanded = false;
+
+                    @override
+                    Widget build(BuildContext context) {
+                        return Container(
+                            color: Colors.grey[300],
+                            padding: EdgeInsets.fromLTRB(10, 10, 10, 3),
+                            child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: <Widget>[
+                                    Text(
+                                        widget.text,
+                                        maxLines: _expanded ? null : 5,
+                                    ),
+                                    FlatButton(
+                                        child: Text(_expanded ? 'less' : 'more'),
+                                        onPressed: () {
+                                            setState(() {
+                                                _expanded = !_expanded;
+                                            });
+                                        },
+                                    )
+                                ],
+                            ),
+                        );
+                    }
+                }
+            </pre>
+
+        <!-- ONLOAD PRETTIFY -->
+        <script src="../prettify.js"></script>
+        <script>
+            window.onload = (function(){ prettyPrint(); });
+        </script>
+
+    </body>
+
+     <footer>
+        <h1>&copy;Lluís Moreu Farran 2020</h1>
+    </footer>
+
+</html>

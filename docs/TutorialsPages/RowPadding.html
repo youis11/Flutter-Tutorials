@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Flutter tutorials</title>
+        <link rel="stylesheet" href="../styles.css">
+        <link rel="stylesheet" href="../prettify.css" />
+        <link rel="stylesheet" href="../sunburst.css" />
+
+
+    </head>
+
+    <header>
+        <div class="header">
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home Page</a></li>
+                <li><a href="../about.html">About</a></li>
+            </ul>
+        </nav>
+        </div>
+    </header>
+
+    <body>
+        <h1>Row Padding</h1>
+        <h3>Row with some Padding</h3>
+            <pre class="prettyprint lang-dart">
+                child: Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                            NumberBall(num: 1, color: Colors.red),
+                            NumberBall(num: 2, color: Colors.green),
+                            NumberBall(num: 3, color: Colors.blue),
+                            NumberBall(num: 4, color: Colors.red),
+                            NumberBall(num: 5, color: Colors.green),
+                            NumberBall(num: 6, color: Colors.blue),
+                        ],
+                    ),
+                ),
+            </pre>
+
+        <!-- ONLOAD PRETTIFY -->
+        <script src="../prettify.js"></script>
+        <script>
+            window.onload = (function(){ prettyPrint(); });
+        </script>
+
+    </body>
+
+     <footer>
+        <h1>&copy;Lluís Moreu Farran 2020</h1>
+    </footer>
+
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Flutter tutorials</title>
+        <link rel="stylesheet" href="../styles.css">
+        <link rel="stylesheet" href="../prettify.css" />
+        <link rel="stylesheet" href="../sunburst.css" />
+
+
+    </head>
+
+    <header>
+        <div class="header">
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home Page</a></li>
+                <li><a href="../about.html">About</a></li>
+            </ul>
+        </nav>
+        </div>
+    </header>
+
+    <body>
+        <h1>GestureDetector</h1>
+        <h3>A widget that detects gestures. If this widget has a child, it defers to that child for its sizing behavior. If it does not have a child, it grows to fit the parent instead.</h3>
+            <pre class="prettyprint lang-dart">
+                return GestureDetector(
+                    onTap: () {
+                        setState(() {
+                        _which = 1 - _which;
+                        });
+                    },
+                    child: Container(
+                        width: 150,
+                        height: 80,
+                        decoration: BoxDecoration(
+                            color: (_which == 0 ? widget.color1 : widget.color2),
+                            border: Border.all(
+                                width: 1,
+                                color: Colors.black,
+                            ),
+                        ),
+                    ),
+                );
+            </pre>
+
+        <!-- ONLOAD PRETTIFY -->
+        <script src="../prettify.js"></script>
+        <script>
+            window.onload = (function(){ prettyPrint(); });
+        </script>
+
+    </body>
+
+     <footer>
+        <h1>&copy;Lluís Moreu Farran 2020</h1>
+    </footer>
+
+</html>

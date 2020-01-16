@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Flutter tutorials</title>
+        <link rel="stylesheet" href="../styles.css">
+        <link rel="stylesheet" href="../prettify.css" />
+        <link rel="stylesheet" href="../sunburst.css" />
+
+
+    </head>
+
+    <header>
+        <div class="header">
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home Page</a></li>
+                <li><a href="../about.html">About</a></li>
+            </ul>
+        </nav>
+        </div>
+    </header>
+
+    <body>
+        <h1>Persistent JSON</h1>
+        <h3>Persistent TODO APP using JSON</h3>
+            <pre class="prettyprint lang-dart">
+                //TODO CLASS----------------------------------
+
+                class Todo {
+                    String what;
+                    bool done;
+                    Todo(this.what) : done = false;
+
+                    Todo.fromJson(Map<String, dynamic> json)
+                        : what = json['what'],
+                        done = json['done'];
+
+                    Map<String, dynamic> toJson() => {
+                            'what': what,
+                            'done': done,
+                    };
+                }
+
+                //INIT & SET STATE---------------------------------------
+
+                @override
+                void initState() {
+                    _loadTodos();
+                    super.initState();
+                }
+
+                Future<void> _loadTodos() async {
+                    await Future.delayed(Duration(seconds: 5));
+                    try {
+                        Directory dir = await getApplicationDocumentsDirectory();
+                        File file = File('${dir.path}/todo.json');
+                        String fileContents = await file.readAsString();
+                        List json = jsonDecode(fileContents);
+                        List<Todo> loaded = [];
+                        for (var elem in json) {
+                            loaded.add(Todo.fromJson(elem));
+                        }
+                        super.setState(() => _todos = loaded);
+                    } catch (e) {
+                        print("ERROR: No he pogut llegir els todos!");
+                        super.setState(() => _todos = []);
+                    }
+                }
+
+                Future<void> _writeTodos() async {
+                    Directory dir = await getApplicationDocumentsDirectory();
+                    File file = File('${dir.path}/todo.json');
+                    var json = jsonEncode(_todos);
+                    // print(json);
+                    await file.writeAsString(json);
+                }
+
+                @override
+                void setState(fn) {
+                    super.setState(fn);
+                    _writeTodos();
+                }
+            </pre>
+
+        <!-- ONLOAD PRETTIFY -->
+        <script src="../prettify.js"></script>
+        <script>
+            window.onload = (function(){ prettyPrint(); });
+        </script>
+
+    </body>
+
+     <footer>
+        <h1>&copy;Lluís Moreu Farran 2020</h1>
+    </footer>
+
+</html>

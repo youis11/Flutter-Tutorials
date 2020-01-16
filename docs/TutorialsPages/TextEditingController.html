@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Flutter tutorials</title>
+        <link rel="stylesheet" href="../styles.css">
+        <link rel="stylesheet" href="../prettify.css" />
+        <link rel="stylesheet" href="../sunburst.css" />
+
+
+    </head>
+
+    <header>
+        <div class="header">
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home Page</a></li>
+                <li><a href="../about.html">About</a></li>
+            </ul>
+        </nav>
+        </div>
+    </header>
+
+    <body>
+        <h1>Text Editing Controller</h1>
+        <h3>A controller for an editable Text Field.</h3>
+            <pre class="prettyprint lang-dart">
+                TextEditingController _controller;
+                @override
+                void initState() {
+                    _controller = TextEditingController(
+                        text: '${widget.numero}',
+                    );
+                    super.initState();
+                }
+                TextField(
+                    controller: _controller,
+                    onSubmitted: (text) {
+                        final int enter = int.parse(text);
+                        Navigator.of(context).pop(enter);
+                    },
+                    keyboardType: TextInputType.number,
+                ),
+            </pre>
+
+        <!-- ONLOAD PRETTIFY -->
+        <script src="../prettify.js"></script>
+        <script>
+            window.onload = (function(){ prettyPrint(); });
+        </script>
+
+    </body>
+
+     <footer>
+        <h1>&copy;Lluís Moreu Farran 2020</h1>
+    </footer>
+
+</html>

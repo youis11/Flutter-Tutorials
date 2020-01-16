@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Flutter tutorials</title>
+        <link rel="stylesheet" href="../styles.css">
+        <link rel="stylesheet" href="../prettify.css" />
+        <link rel="stylesheet" href="../sunburst.css" />
+
+
+    </head>
+
+    <header>
+        <div class="header">
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home Page</a></li>
+                <li><a href="../about.html">About</a></li>
+            </ul>
+        </nav>
+        </div>
+    </header>
+
+    <body>
+        <h1>Alert Dialog</h1>
+        <h3>PopUp actioned in AppBar that erases a list</h3>
+            <pre class="prettyprint lang-dart">
+                //ACTIONS IN APPBAR----------------------------------
+
+                appBar: AppBar(
+                    actions: <Widget>[
+                    IconButton(
+                        icon: Icon(Icons.delete),
+                        onPressed: _maybeEraseChecked,
+                    )
+                    ],
+                ),
+
+                //ALERT DIALOG---------------------------------------
+                void _maybeEraseChecked() {
+                    showDialog(
+                    context: context,
+                    builder: (innerContext) => AlertDialog(
+                        title: Text('Confirmation'),
+                        content: Text(
+                            'Are you sure you want to delete the checked items?',
+                        ),
+                        actions: <Widget>[
+                            FlatButton(
+                                onPressed: () {
+                                    Navigator.of(innerContext).pop(false);
+                                },
+                                child: Text('Cancel'),
+                            ),
+                            FlatButton(
+                                onPressed: () {
+                                    Navigator.of(innerContext).pop(true);
+                                },
+                                child: Text('Erase'),
+                            )
+                        ],
+                    ),
+                    ).then((erase) {
+                        if (erase) {
+                            _eraseChecked();
+                        }
+                    });
+                }
+
+                void _eraseChecked() {
+                    List<Todo> pending = [];
+                    for (var todo in _todos) {
+                        if (!todo.done) pending.add(todo);
+                    }
+                    setState(() {
+                        _todos = pending;
+                    });
+                }
+            </pre>
+
+        <!-- ONLOAD PRETTIFY -->
+        <script src="../prettify.js"></script>
+        <script>
+            window.onload = (function(){ prettyPrint(); });
+        </script>
+
+    </body>
+
+     <footer>
+        <h1>&copy;Lluís Moreu Farran 2020</h1>
+    </footer>
+
+</html>

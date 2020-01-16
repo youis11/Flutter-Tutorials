@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Flutter tutorials</title>
+        <link rel="stylesheet" href="../styles.css">
+        <link rel="stylesheet" href="../prettify.css" />
+        <link rel="stylesheet" href="../sunburst.css" />
+
+
+    </head>
+
+    <header>
+        <div class="header">
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home Page</a></li>
+                <li><a href="../about.html">About</a></li>
+            </ul>
+        </nav>
+        </div>
+    </header>
+
+    <body>
+        <h1>Collapsible text</h1>
+        <h3>Stateful Widget that collapses text with a Flat Button</h3>
+            <pre class="prettyprint lang-dart">
+                //PUSH NAVIGATOR-----------------------------------------------------------
+                
+                RaisedButton(
+                    child: Text('Editar'),
+                    onPressed: () {
+                        Navigator.of(context).push(
+                            MaterialPageRoute(
+                                builder: (_) => EditaNumero(numero), //number that changes
+                            ),
+                        ).then((enter) {
+                            if (enter != null) {
+                                setState(() {
+                                    numero = enter;
+                                });
+                            }
+                        });
+                    },
+                ),
+
+                //POP NAVIGATOR------------------------------------------------------------
+
+                RaisedButton(
+                    child: Text('Guardar'),
+                    onPressed: () {
+                        final int enter = int.parse(_controller.text);
+                        Navigator.of(context).pop(enter);
+                    },
+                )
+            </pre>
+
+        <!-- ONLOAD PRETTIFY -->
+        <script src="../prettify.js"></script>
+        <script>
+            window.onload = (function(){ prettyPrint(); });
+        </script>
+
+    </body>
+
+     <footer>
+        <h1>&copy;Lluís Moreu Farran 2020</h1>
+    </footer>
+
+</html>
