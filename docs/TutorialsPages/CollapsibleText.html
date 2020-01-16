@@ -21,37 +21,38 @@
     </header>
 
     <body>
-        <h1>Collapsible text</h1>
-        <h3>Stateful Widget that collapses text with a Flat Button</h3>
+        <h1>Raised Button Navigator</h1>
+        <h3>Raised Button that calls Navigator to change a number</h3>
             <pre class="prettyprint lang-dart">
-                //PUSH NAVIGATOR-----------------------------------------------------------
-                
-                RaisedButton(
-                    child: Text('Editar'),
-                    onPressed: () {
-                        Navigator.of(context).push(
-                            MaterialPageRoute(
-                                builder: (_) => EditaNumero(numero), //number that changes
+                class _CollapsibleTextState extends State<CollapsibleText> {
+                    bool _expanded = false;
+
+                    @override
+                    Widget build(BuildContext context) {
+                        return Container(
+                            color: Colors.grey[300],
+                            padding: EdgeInsets.fromLTRB(10, 10, 10, 3),
+                            child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: <Widget>[
+                                    Text(
+                                        widget.text,
+                                        maxLines: _expanded ? null : 5,
+                                    ),
+                                    FlatButton(
+                                        child: Text(_expanded ? 'less' : 'more'),
+                                        onPressed: () {
+                                            setState(() {
+                                                _expanded = !_expanded;
+                                            });
+                                        },
+                                    )
+                                ],
                             ),
-                        ).then((enter) {
-                            if (enter != null) {
-                                setState(() {
-                                    numero = enter;
-                                });
-                            }
-                        });
-                    },
-                ),
-
-                //POP NAVIGATOR------------------------------------------------------------
-
-                RaisedButton(
-                    child: Text('Guardar'),
-                    onPressed: () {
-                        final int enter = int.parse(_controller.text);
-                        Navigator.of(context).pop(enter);
-                    },
-                )
+                        );
+                    }
+                }
             </pre>
 
         <!-- ONLOAD PRETTIFY -->
